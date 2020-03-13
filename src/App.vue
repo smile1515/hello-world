@@ -17,6 +17,7 @@ export default {
         })
   },
   methods:{
+      // fontSize
       setRemUnit(){
         const rem = document.documentElement.clientWidth / 10;
         document.documentElement.style.fontSize = rem + 'px';
@@ -33,9 +34,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
-body {
-    
+body,*{
+    padding: 0;
+    margin: 0;
 }
 </style>
