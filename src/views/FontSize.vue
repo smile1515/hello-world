@@ -9,7 +9,7 @@
         </div>
         <div class="view-content">
             <div class="slider" style="height: 120px;">
-                <div class="banner slider-wrap" style="position: relative;width: 100%;height: 100%;overflow: hidden;">
+                <div class="banner slider-wrap" style="position: relative;width: 100%;height: 100%;overflow: hidden;line-height: 0;">
                     <!-- <div class="slider-item" style="">
                         <a href="javascript:void(0)">
                             <img src=""/>
@@ -23,18 +23,25 @@
 </template>
 
 <script>
-    // import banner from '../plugins/banner.js'
+    import banner from '../plugins/banner.js'
+    import img1 from '../assets/image/banner01.jpg'
+    import img2 from '../assets/image/banner02.jpg'
+    import img3 from '../assets/image/banner05.jpg'
+    import img4 from '../assets/image/banner06.jpg'
     export default {
         name:'fontSize',
         created() {
             document.title = 'clientWidth rem';
         },
         mounted(){
-            /* banner({
+            banner({
+                targetEle:'.banner',
                 'runTime':3,
                 'moveTime':'2',
-                'image':['https://gw.alicdn.com/imgextra/i4/128/O1CN01Iouh6n1CofHiTuWRZ_!!128-0-lubanu.jpg','https://gw.alicdn.com/imgextra/i1/10/O1CN01dq6hbl1BwcY0iimod_!!10-0-lubanu.jpg']
-            }) */
+                'image':[img1,img2,img3,img4],
+                'dom-group':'center',
+                'auto':'0',
+            })
         },
         method:{}
     }
@@ -70,5 +77,8 @@
             width: 42px;
             text-align: center;
         }
+    }
+    .banner-cursor-active{
+         background-color:rgb(255, 80, 0);
     }
 </style>

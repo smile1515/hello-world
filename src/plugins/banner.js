@@ -27,8 +27,8 @@ export default function touchBanner(data) {
      *   5.监听用户的移动事件
      *
      * */
-
-    let b = document.querySelector('.banner'),
+    
+    let b = document.querySelector(data.targetEle),
         dom = new DOM(),
         num = 1,
         len = data.image.length,
@@ -45,16 +45,26 @@ export default function touchBanner(data) {
     let newEle = dom.create([
         {
             tag: 'ul',
-            className: 'banner-group-images',
+            className: data.imageClassName || 'banner-group-images',
             style:{
+                'line-height':'0px',
                 transition:transition,
-                width:(wid * len) + 'px',
-                transform:'translateX('+ -0 +'px)'    //起始第二张图片位置
+                width:(wid * (len+2)) + 'px',
+                transform:'translateX('+ -wid +'px)'    //起始第二张图片位置
             }
         },
         {
             tag: 'ul',
-            className: 'banner-group-cursor'
+            className: data.domClassName || 'banner-group-cursor',
+            style:{
+                'position':'absolute',
+                'bottom': 0,
+                'left': 0,
+                'right': 0,
+                'height':'20px',
+                'line-height':'20px',
+                'font-size':'12px',
+            }
         }
     ]).toEnd(b).newElement;
 
@@ -85,24 +95,32 @@ export default function touchBanner(data) {
                     }
                     newEle[0].style.transition = transition;
                     move(newEle[0] , (this.index+1) * -wid);
-                    setClassName(newEle[1].children , 'banner-cursor-active' , this.index);
+                    setClassName(newEle[1].children , (data.domClassName? data.domClassName : 'banner-cursor-active'), this.index);
                     num = this.index + 1;
                     //console.log("点击设置圆点" + this.index);
                 },
-                className:index === 0 ? 'banner-cursor-active' : ''
+                className:index === 0 ? 'banner-cursor-active' : '',
+                style:{
+                    'display':'inline-block',
+                    'width':'10px',
+                    'height': '10px',
+                    'border-radius':'50%',
+                    'margin': '0 10px',
+                    'background-color':'#fff',
+                }
             }
         ]).toEnd(newEle[1])
     });
 
     //第一个
-    // let firstLi = imgLis[0][0].cloneNode(true);
+    let firstLi = imgLis[0][0].cloneNode(true);
 
     //最后一个
-    // let lastLi = imgLis[imgLis.length-1][0].cloneNode(true);
+    let lastLi = imgLis[imgLis.length-1][0].cloneNode(true);
 
-    // newEle[0].appendChild(firstLi);
-    // newEle[0].insertBefore(lastLi,imgLis[0][0]);
-
+    newEle[0].appendChild(firstLi);
+    newEle[0].insertBefore(lastLi,imgLis[0][0]);
+    console.log(newEle[0]);
     //定时器
     function run() {
         //开始定时器前必须开启transition
@@ -112,16 +130,18 @@ export default function touchBanner(data) {
         num = num > len ? 1 : num;
 
         //此处加1是为了起始位置进一位(x秒后移动至第三张图片开始)
-        move(newEle[0] , (num-1) * -wid);
+        move(newEle[0] , (num+1) * -wid);
 
         setClassName(newEle[1].children , 'banner-cursor-active' , num);
 
         num++;
     }
-
-    b.timer = setInterval(function () {
-        run()
-    },data.runTime * 1000);
+    if('1' == data.auto) {
+        b.timer = setInterval(function () {
+            run()
+        },data.runTime * 1000);
+    }
+    
 
     /**
      * 移动(瞬移)
@@ -186,9 +206,11 @@ export default function touchBanner(data) {
     newEle[0].addEventListener('touchend',function () {
         //开启定时器 , transition
         this.style.transition = transition;
-        b.timer = setInterval(function () {
-            run()
-        },data.runTime * 1000);
+        if('1' == data.auto) {
+            b.timer = setInterval(function () {
+                run()
+            },data.runTime * 1000);
+        }
 
         if(Math.abs(touchData.moveWid) > half){
             //用户理想方向
@@ -242,7 +264,7 @@ export default function touchBanner(data) {
 
         newEle[0].style.width = wid * (len + 2) + 'px';
 
-        let li = GetDom('.banner-group-images li',true);
+        let li = GetDom((data.imageClassName ? data.imageClassName : '.banner-group-images li'),true);
 
         for (let i = 0, iLen = li.length; i < iLen; i++){
             li[i].style.width = wid + 'px';
