@@ -55,17 +55,19 @@ yarn lint
     ::-webkit-scrollbar css选择器 影响滚动条样式
     https://developer.mozilla.org/zh-CN/docs/Web/CSS/::-webkit-scrollbar
 
-7.响应式布局、字体大小适应-wait
+7.search page/iscroll/http请求
 
-8.时间选择插件-wait
+8.响应式布局、字体大小适应-wait
 
-9.下拉刷新 上划加载更多-wait
+9.时间选择插件-wait
 
-10.图片预览-wait
+10.下拉刷新 上划加载更多-wait
 
-11.dialog-wait
+11.图片预览-wait
 
-12.picker-wait
+12.dialog-wait
+
+13.picker-wait
 
 ```
 

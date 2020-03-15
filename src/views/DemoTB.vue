@@ -179,6 +179,7 @@
         background-color: rgba(255,133,42,1);
         display: flex;
         padding: 6px 9px 6px 0;
+        z-index: 101;
         .placeholder {
             display:block;
             line-height: 25px;
