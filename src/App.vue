@@ -39,5 +39,12 @@ export default {
 body,*{
     padding: 0;
     margin: 0;
+    box-sizing:border-box;
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+a {
+    text-decoration: none;
+    color:#333333;
 }
 </style>
