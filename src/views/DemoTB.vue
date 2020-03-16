@@ -90,10 +90,15 @@
     import menu03 from '../assets/image/menu03.png'
     import menu04 from '../assets/image/menu04.png'
     import recommend01 from '../assets/image/recommend01.webp'
+    import http from '../utils/http.js'
     export default {
         name:'fontSize',
         created() {
             document.title = 'clientWidth rem';
+            // http.post('getMessage',{'data':'12'}).then(response => {
+            //     console.log('demo',response);
+            // })
+            this.fetchData()
         },
         data(){
             return{                
@@ -159,7 +164,13 @@
                 'auto':'0',
             })
         },
-        method:{}
+        methods:{
+            fetchData:async function (){
+                let params = {}
+                const res = await http.get('/api/getData',params)
+                console.log('demo',res);
+            }
+        }
     }
 </script>
 

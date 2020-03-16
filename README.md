@@ -55,13 +55,16 @@ yarn lint
     ::-webkit-scrollbar css选择器 影响滚动条样式
     https://developer.mozilla.org/zh-CN/docs/Web/CSS/::-webkit-scrollbar
 
-7.search page/iscroll/http请求
-
+7.search page/iscroll/http请求 axios vue-resource /mock/vuex
+    axios 前后端交互请求
+    yarn add axios --save-dev
+    vue.config.js项目自定义配置（代理配置 http-proxy-middleware） - 可选的配置文件 存在时@vue/client-serve会自动加载 
+    
 8.响应式布局、字体大小适应-wait
 
 9.时间选择插件-wait
 
-10.下拉刷新 上划加载更多-wait
+10.下拉刷新 上划加载更多 - /src/components/scroll.vue
 
 11.图片预览-wait
 
