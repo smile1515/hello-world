@@ -20,6 +20,7 @@
             <div class="page-menu">
                 <div class="menu-bg"></div>
                 <div class="menu-wrap">
+                    
                     <div class="menu-item" v-for="(menu,index) in menuList" v-bind:key="index">
                         <a href="javascript:void(0)" >
                             <img :src="menu.imgSrc"/>
@@ -90,7 +91,9 @@
     import menu03 from '../assets/image/menu03.png'
     import menu04 from '../assets/image/menu04.png'
     import recommend01 from '../assets/image/recommend01.webp'
+
     import http from '../utils/http.js'
+    // import {menuList} from '../mock/tbjson.js'
     export default {
         name:'fontSize',
         created() {
@@ -168,7 +171,8 @@
             fetchData:async function (){
                 let params = {}
                 const res = await http.get('/api/getData',params)
-                console.log('demo',res);
+                console.log(res)
+                this.menuList = res.data.data.menuList;
             }
         }
     }

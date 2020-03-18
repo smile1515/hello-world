@@ -33,7 +33,7 @@ function checkCode(res) {
         alert(res.msg)
     }
     if(res.data && (!res.data.success)) {
-        alert(res.data.error_msg)
+        // alert(res.data.error_msg)
     }
     return res
 }
@@ -66,6 +66,7 @@ export default {
             url,
             params,
             timeout:10000,
+            withCredentials:false, //是否携带cookie
             headers:{
                 'X-Requested-with':'XMLHttpRequest'
             }
