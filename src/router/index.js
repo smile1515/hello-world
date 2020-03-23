@@ -7,6 +7,7 @@ import Search from '../views/Search.vue'
 import LoadMore from '../views/LoadMore.vue'
 import VuexDemo from '../views/VuexDemo.vue'
 import VuexDemo2 from '../views/VuexDemo2.vue'
+import FilterDemo from '../views/FilterDemo.vue'
 Vue.use(Router)
 
 const router = new Router({
@@ -32,13 +33,23 @@ const router = new Router({
         title:'loadmore',
         component:LoadMore
     },{
-        path:'/VuexDemo',
+        path:'/VuexDemo/:id',
         title:'Vuex Demo',
+        name:'VuexDemoById',
         component:VuexDemo
     },{
         path:'/VuexDemo2',
         title:'Vuex Demo',
         component:VuexDemo2
+    },{
+        path:'/VuexDemo',
+        title:'Vuex Demo',
+        name:'VuexDemo',
+        component:VuexDemo
+    },{
+        path:'/FilterDemo',
+        title:'Filter',
+        component:FilterDemo
     }]
 })
 

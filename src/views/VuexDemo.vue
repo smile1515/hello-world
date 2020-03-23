@@ -12,11 +12,14 @@
     import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
     export default {
         name:'Vuex',
-        created() {            
+        created() {
+            // 路由入参
+            console.log(this.$route.params)
+            console.log(this.$route.query)
         },
         data (){
             return {
-                
+                doneTodos:[]
             }
         },
         computed:{
@@ -24,7 +27,7 @@
                 num:state => state.num
             }),
             ...mapGetters([
-                'doneTodos',
+                // 'doneTodos',
             ])
         },
         /* computed:mapState([
