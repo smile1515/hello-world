@@ -8,6 +8,7 @@ import LoadMore from '../views/LoadMore.vue'
 import VuexDemo from '../views/VuexDemo.vue'
 import VuexDemo2 from '../views/VuexDemo2.vue'
 import FilterDemo from '../views/FilterDemo.vue'
+import cpicDemo from '../views/cpic.vue'
 Vue.use(Router)
 
 const router = new Router({
@@ -50,6 +51,9 @@ const router = new Router({
         path:'/FilterDemo',
         title:'Filter',
         component:FilterDemo
+    },{
+        path:'/cpicDemo',
+        component:cpicDemo
     }]
 })
 

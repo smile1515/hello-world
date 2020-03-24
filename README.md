@@ -56,7 +56,7 @@ yarn lint
     https://developer.mozilla.org/zh-CN/docs/Web/CSS/::-webkit-scrollbar
 
 7.search page/iscroll/http请求 axios vue-resource /mock/vuex
-    axios 前后端交互请求
+    axios 前后端交互请求 base_url 配置？
     yarn add axios --save-dev
     vue.config.js项目自定义配置，可选的配置文件 存在时@vue/client-serve会自动加载 
     proxy代理配置 http-proxy-middleware before模拟数据mockjs mockjs配置
@@ -64,6 +64,7 @@ yarn lint
     Vue inspect  查看vue-cli创建项目的webpack配置
     vue-loader是一个webpack的loader；可以将vue文件转换为JS模块
     vuex vue状态管理插件
+    mint-ui
     autoprefixer
 8.响应式布局、字体大小适应-wait
 
