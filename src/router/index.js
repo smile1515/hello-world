@@ -9,6 +9,7 @@ import VuexDemo from '../views/VuexDemo.vue'
 import VuexDemo2 from '../views/VuexDemo2.vue'
 import FilterDemo from '../views/FilterDemo.vue'
 import cpicDemo from '../views/cpic.vue'
+import drag from '../views/drag.vue'
 Vue.use(Router)
 
 const router = new Router({
@@ -18,6 +19,10 @@ const router = new Router({
      },{
          path:"/",
          redirect:"/index"
+     },{
+         path:'/drag',
+         title:'拖拽',
+         component:drag,
      },{
          path:"/index",
          component: HelloWorld

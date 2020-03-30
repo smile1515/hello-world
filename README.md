@@ -26,7 +26,7 @@ yarn lint
 ### 项目使用到的前端技术
 ```
 1.需要安装node webpack vue-cli
-2.vue + vue-router + sass + eslint + webpack
+2.vue + vue-router + sass + eslint + webpack + mint-ui
 ```
 
 ### 项目创建及开发记录
@@ -63,8 +63,9 @@ yarn lint
     ES6的导入导出
     Vue inspect  查看vue-cli创建项目的webpack配置
     vue-loader是一个webpack的loader；可以将vue文件转换为JS模块
-    vuex vue状态管理插件
-    mint-ui
+    vue-router yarn add vue-router --save
+    vuex vue状态管理插件  yarn add vuex --save
+    mint-ui yarn add vuex --save
     autoprefixer
 8.响应式布局、字体大小适应-wait
 
