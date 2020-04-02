@@ -1,3 +1,7 @@
+const path = require('path')
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
 module.exports = {
     // webpack-dev-server
     // devServe: {
@@ -37,6 +41,28 @@ module.exports = {
             //         'data':''
             //     });
             // });
+        }
+    },
+    pages: {
+            index: {
+              // 入口文件
+              entry: resolve('src/main.js'),　　/*这个是根入口文件*/
+              // 页面title
+              title: '权益中心'
+            }
+        },
+    css:{
+        extract:true
+    },
+    configureWebpack: () => {
+        if (process.env.NODE_ENV === 'production') {
+            return {
+                performance:{
+                    hints:false
+                }
+            }
+        } else {
+            
         }
     }
 }

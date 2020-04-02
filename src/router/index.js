@@ -8,8 +8,9 @@ import LoadMore from '../views/LoadMore.vue'
 import VuexDemo from '../views/VuexDemo.vue'
 import VuexDemo2 from '../views/VuexDemo2.vue'
 import FilterDemo from '../views/FilterDemo.vue'
-import cpicDemo from '../views/cpic.vue'
-import drag from '../views/drag.vue'
+import CpicDemo from '../views/Cpic.vue'
+import Drag from '../views/Drag.vue'
+import DragView from '../views/DragView.vue'
 Vue.use(Router)
 
 const router = new Router({
@@ -20,45 +21,49 @@ const router = new Router({
          path:"/",
          redirect:"/index"
      },{
+         path:'/dragView',
+         title:'拖拽插件',
+         component:DragView,
+     },{
          path:'/drag',
          title:'拖拽',
-         component:drag,
+         component:Drag,
      },{
          path:"/index",
          component: HelloWorld
      },{
-        path:"/DemoTB",
+        path:"/demoTB",
         title:"淘宝首页demo",
         component: DemoTB,
     },{
-        path:"/Search",
+        path:"/search",
         title:"search page",
         component:Search
     },{
-        path:'/LoadMore',
+        path:'/loadMore',
         title:'loadmore',
         component:LoadMore
     },{
-        path:'/VuexDemo/:id',
+        path:'/vuexDemo/:id',
         title:'Vuex Demo',
         name:'VuexDemoById',
         component:VuexDemo
     },{
-        path:'/VuexDemo2',
+        path:'/vuexDemo2',
         title:'Vuex Demo',
         component:VuexDemo2
     },{
-        path:'/VuexDemo',
+        path:'/vuexDemo',
         title:'Vuex Demo',
         name:'VuexDemo',
         component:VuexDemo
     },{
-        path:'/FilterDemo',
+        path:'/filterDemo',
         title:'Filter',
         component:FilterDemo
     },{
         path:'/cpicDemo',
-        component:cpicDemo
+        component:CpicDemo
     }]
 })
 

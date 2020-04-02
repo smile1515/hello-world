@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router'
 import 'mint-ui/lib/style.css'
 import './assets/font/iconfont.css'
+import './assets/base.scss'
 import './mock/index.js'
 import store from './vuex/index.js'
 

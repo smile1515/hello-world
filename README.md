@@ -56,7 +56,7 @@ yarn lint
     https://developer.mozilla.org/zh-CN/docs/Web/CSS/::-webkit-scrollbar
 
 7.search page/iscroll/http请求 axios vue-resource /mock/vuex
-    axios 前后端交互请求 base_url 配置？
+    axios 前后端交互请求 base_url 配置   .env.development   .env.production   .env.staging
     yarn add axios --save-dev
     vue.config.js项目自定义配置，可选的配置文件 存在时@vue/client-serve会自动加载 
     proxy代理配置 http-proxy-middleware before模拟数据mockjs mockjs配置
@@ -67,7 +67,7 @@ yarn lint
     vuex vue状态管理插件  yarn add vuex --save
     mint-ui yarn add vuex --save
     autoprefixer
-8.响应式布局、字体大小适应-wait
+8.响应式布局、字体大小适应
 
 9.时间选择插件-wait
 

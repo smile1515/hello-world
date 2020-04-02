@@ -7,23 +7,25 @@
             @touchend="touchEnd($event, index)" 
             v-bind:key="item">{{item}}</li>
         </transition-group> -->
-        <div class="wrapper">
-            <transition-group name="flip-list" tag="div">
-                <div class="m-content-box" v-for="(item, index) in contentArr" 
-                    :key="item"
+        <div class="" style="height: 400px;"></div>
+        <div class="wrapper" ref="dragwrap" style="touch-action: none;">
+            <transition-group name="flip-list" tag="div" >
+                <div class="m-content-box" v-for="(item, index) in contentArrC" 
+                    :key="item.id"
                     :class="[{dark: dark == 'dark'}, {light: light == item}]" 
                     @touchstart="touchstart($event, item, index)"
                     @touchend="touchend" @touchmove="touchmove($event, item, index)"
-                    :style="{transition: (isRemove ? '0s' : '0.3s')}"
+                    :style="{transform: (index == moveIndex ? transforms : '')}"
                 >
                   <div class="m-content-left">
-                    <div class="m-content-index">{{index + 1}}</div>
-                    <div class="m-content">{{item}}</div>
+                    <div class="image-icon">{{index}} </div>
+                    <div class="m-content">{{moveIndex}} {{item.title}}</div>
                   </div>
-                  <div class="m-content-btn"></div>
+                  <!-- <div class="m-content-btn"></div> -->
                 </div>
             </transition-group>
         </div>
+        <div class="" style="height: 400px;"></div>
     </div>
 </template>
 
@@ -40,21 +42,59 @@
                         y:''
                     }
                 },
-                contentArr: ['选项A', '选项B', '选项C', '选项D'],
+                contentArr: [{
+                    id:0,
+                    title:'选项A'
+                },{
+                    id:1,
+                    title:'选项B'
+                },{
+                    id:2,
+                    title:'选项C'
+                },{
+                    id:3,
+                    title:'选项D'
+                },{
+                    id:4,
+                    title:'选项E'
+                }],
                 light: '',
                 dark: '',
                 itemName: '',
                 pageY: 0,
                 pageX:0,
                 startX:0,
+                startY:0,
                 disX:0,
-               moveIndex:0,
-               moveItem:0,
-                isRemove: false
+                disY:0,
+                moveIndex:0,
+                moveItem:'',
+                targetIndex:0,
+                targetItem:'',
+                isRemove: false,
+                transforms: 'translate(0px, 0px)',
+                itemWidth:0,
+                itemHeight:0
+                
+            }
+        },
+        computed:{
+            contentArrC () {
+                return this.contentArr.filter(function (number) {
+                  return number
+                })
             }
         },
         components:{
             
+        },
+        mounted() {
+            // document.body.addEventListener('touchmove' , function(e){
+            //     e=e||window.event;
+            //     e.preventDefault();
+            // },{ passive: false })
+            this.itemHeight = this.$refs.dragwrap.offsetHeight/2;
+            console.log(this.$refs.dragwrap.offsetHeight)
         },
         methods:{
             // handleTouchstart (e) {
@@ -76,17 +116,44 @@
             // }
             
             touchstart($event, item,i) {
-              this.heighLight(item)
-              this.moveIndex = i;
-              this.moveItem = item;
-              this.startX = $event.targetTouches[0].clientX; 
+                // this.heighLight(item)
+                this.moveIndex = i;
+                this.moveItem = item;
+                this.startX = $event.targetTouches[0].clientX; 
+                this.startY = $event.targetTouches[0].clientY;
             },
             touchmove($, item, index) {
-              this.changePageY($, item, index)
+                this.itemWidth = document.documentElement.clientWidth / 4;
+                this.itemName = item
+                this.isRemove = true
+                this.pageY = $.targetTouches[0].pageY - 23
+                this.disX = $.targetTouches[0].clientX - this.startX
+                this.disY = $.targetTouches[0].clientY - this.startY
+                
+                this.transforms = 'translate('+this.disX+'px,'+this.disY+'px)';
+                let num = Math.round(this.disX/this.itemWidth)
+                let y = Math.round(this.disY/this.itemHeight) * 4
+                console.log(index)
+                console.log(num + y)
+                if(index + num + y > this.contentArr.length -1) {
+                    this.targetIndex = this.contentArr.length -1
+                } else if(index + num + y < 0) {
+                    this.targetIndex  = 0
+                } else {
+                    this.targetIndex = index + num + y
+                }
             },
             touchend() {
-              this.changeHeightLight()
-              this.listSort()
+                console.log(this.targetIndex);
+                let tempArr = this.contentArr
+                let moveItem = tempArr[this.moveIndex]
+                let target = tempArr[this.targetIndex]
+                this.$set(this.contentArr,this.targetIndex,moveItem)
+                this.$set(this.contentArr,this.moveIndex,target)
+                this.moveIndex = '';
+                this.moveItem = '';
+                this.transforms = '';
+                console.log(this.contentArr,this.moveIndex);
             },
             heighLight(item) {
               this.light = item
@@ -97,22 +164,33 @@
               this.dark = ''
             },
             changePageY($, item, i) {
-                this.moveIndex = this.moveIndex ? this.moveIndex : i;
-                this.moveItem = this.moveItem ? this.moveItem : item;
-                let itemWidth = document.documentElement.clientWidth / 4;
+                // this.moveIndex = this.moveIndex ? this.moveIndex : i;
+                // this.moveItem = this.moveItem ? this.moveItem : item;
+                this.itemWidth = document.documentElement.clientWidth / 4;
                 this.itemName = item
                 this.isRemove = true
                 this.pageY = $.targetTouches[0].pageY - 23
                 this.disX = $.targetTouches[0].clientX - this.startX
-                let num = Math.ceil(this.disX/itemWidth)
+                this.disY = $.targetTouches[0].clientY - this.startY
+                // console.log($.targetTouches[0].clientX,this.startX)
+                // console.log($.targetTouches[0].clientY,this.startY)
+                // let element = $.targetTouches[0]
+                // element.target.style.cssText = `transform: translate(${this.disX}px, ${this.disY}px);`
+                // this.transforms = `transform: translate(${this.disX}px, ${this.disY}px);`
+                this.transforms = 'translate('+this.disX+'px,'+this.disY+'px)';
+                // console.log(this.transforms);
+                let num = Math.round(this.disX/this.itemWidth)
                 if(num > 0) {
-                    let tempOption = this.contentArr[num]
-                    this.contentArr[this.moveIndex] = tempOption
-                    this.contentArr[num] = this.moveItem
-                    this.moveIndex = num;
-                    this.moveItem = this.contentArr[this.moveIndex];
-                    // this.startX = $.targetTouches[0].clientX
-                    console.log(this.contentArr);
+                    console.log(i)
+                    console.log(num)
+                    this.targetIndex = i + num
+                    // let tempOption = this.contentArr[num]
+                    // this.contentArr[this.moveIndex] = tempOption
+                    // this.contentArr[num] = this.moveItem
+                    // this.moveIndex = num;
+                    // this.moveItem = this.contentArr[this.moveIndex];
+                    // // this.startX = $.targetTouches[0].clientX
+                    // console.log(this.contentArr);
                 }
                 // 移动到第几个
                 // if (this.pageX < (46 * i - 23) && i > 0) {
