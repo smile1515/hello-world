@@ -102,6 +102,11 @@
             <div class="index-life">
                 
             </div>
+            <div v-html="$xss(testa)"></div>
+            <div v-html="testHtml"></div>
+            <input v-model="valueB" />
+            {{valueB}}
+            <div @click="getValueB">获取元素</div>
         </div>
     </div>
 </template>
@@ -114,7 +119,9 @@
         name:'cpic',
         data () {
             return {
-                
+                valueB:`alert('12')`,
+                testa:'<a onclick=\'alert("xss攻击")\'>链接</a><p>我是一个p标签</p>',
+                testHtml:'<p>我是一个p标签</p>'
             }
         },
         components:{
@@ -123,10 +130,11 @@
             Badge,
         },
         methods:{
-            
+            getValueB () {
+                console.log(this.valueB)
+            }
         },
         created() {
-            
         }
     }
 </script>

@@ -8,6 +8,19 @@
 export default {
   name: 'App',
   created() {
+        // ios9 以下，display:flex 元素的第一级子元素必须是block，否则 flex 布局是不会生效的
+        // document.title = '权益中心'
+        // this.setRemUnit();
+        // let resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        // window.addEventListener(resizeEvt,this.setRemUnit);
+        // document.addEventListener('DOMContentLoaded', this.setRemUnit, false);
+        // window.addEventListener('pageshow',function(e){
+        //     if(e.persisted){
+        //         this.setRemUnit();
+        //     }
+        // })
+      
+      
         this.setRemUnit();
         window.addEventListener('resize',this.setRemUnit);
         window.addEventListener('pageshow',function(e){

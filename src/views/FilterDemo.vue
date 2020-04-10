@@ -14,6 +14,8 @@
         </div>
         <input type="text" ref="input"><span @click="setValue">ref</span>
         <div style="cursor: pointer;" @click="gotoVuex">gotoVuex</div>
+        <h3></h3>
+        <div v-html="unescape(vHtmlData)"></div>
     </div>
 </template>
 
@@ -31,7 +33,8 @@
                     'title':'HOW to do lists in vue',
                     'author': 'Jane Doe',
                     'publishedAt': '2016-04-10'
-                }
+                },
+                vHtmlData:'进入&lt;span class="therm-blue"&gt;太平洋产险公众号&lt;&#x2F;span&gt;点击<span class="therm-blue">权益中心</span>进行使用'
             }
         },
         filters:{
@@ -75,6 +78,15 @@
                         id:'text'
                     }
                 })
+            },
+            unescape:function (html) {
+                return html
+                    .replace(html ? /&(?!#?\w+;)/g : /&/g, '&amp;')
+                    .replace(/&lt;/g, "<")
+                    .replace(/&gt;/g, ">")
+                    .replace(/&quot;/g, "\"")
+                    .replace(/&#39;/g, "'")
+                    .replace(/&#x2F;/g, "/");
             }
         },
         created(){

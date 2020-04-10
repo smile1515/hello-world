@@ -78,7 +78,7 @@ yarn lint
 12.dialog-wait
 
 13.picker-wait
-
+14.drag  views/Drag.vue
 ```
 
 

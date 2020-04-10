@@ -11,27 +11,29 @@ import FilterDemo from '../views/FilterDemo.vue'
 import CpicDemo from '../views/Cpic.vue'
 import Drag from '../views/Drag.vue'
 import DragView from '../views/DragView.vue'
+import VSlot from '../views/VSlot.vue'
 Vue.use(Router)
 
 const router = new Router({
-     routes:[{
-         path:"*",
-         redirect:"/"
-     },{
-         path:"/",
-         redirect:"/index"
-     },{
-         path:'/dragView',
-         title:'拖拽插件',
-         component:DragView,
-     },{
-         path:'/drag',
-         title:'拖拽',
-         component:Drag,
-     },{
-         path:"/index",
-         component: HelloWorld
-     },{
+    mode: 'history',
+    routes:[{
+        path:"*",
+        redirect:"/"
+    },{
+        path:"/",
+        redirect:"/index"
+    },{
+        path:'/dragView',
+        title:'拖拽插件',
+        component:DragView,
+    },{
+        path:'/drag',
+        title:'拖拽',
+        component:Drag,
+    },{
+        path:"/index",
+        component: HelloWorld
+    },{
         path:"/demoTB",
         title:"淘宝首页demo",
         component: DemoTB,
@@ -64,6 +66,9 @@ const router = new Router({
     },{
         path:'/cpicDemo',
         component:CpicDemo
+    },{
+        path:'/vslot',
+        component:VSlot
     }]
 })
 

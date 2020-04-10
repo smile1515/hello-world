@@ -25,6 +25,9 @@
                 </div>
             </transition-group>
         </div>
+        <div>
+            <span @click="copy()">点击赋值</span>
+        </div>
         <div class="" style="height: 400px;"></div>
     </div>
 </template>
@@ -97,6 +100,19 @@
             console.log(this.$refs.dragwrap.offsetHeight)
         },
         methods:{
+            copy (message) {
+                var aux = document.createElement("input"); 
+                aux.setAttribute("value", '我是复制文本：18300694315'); 
+                document.body.appendChild(aux); 
+                aux.select();
+                document.execCommand("copy"); 
+                document.body.removeChild(aux);
+                if (message == null) {
+                    alert("复制成功");
+                } else{
+                    alert(message);
+                }
+            },
             // handleTouchstart (e) {
             //     let element = e.targetTouches[0]
             //     this.source.client = {
