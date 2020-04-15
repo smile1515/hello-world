@@ -67,6 +67,7 @@ yarn lint
     vuex vue状态管理插件  yarn add vuex --save
     mint-ui yarn add vuex --save
     autoprefixer
+    require.context  高频组件导入
 8.响应式布局、字体大小适应
 
 9.时间选择插件-wait
@@ -79,6 +80,8 @@ yarn lint
 
 13.picker-wait
 14.drag  views/Drag.vue
+15.transition 
+第三方库：Animate.css   Velocity.js
 ```
 
 

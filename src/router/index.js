@@ -12,6 +12,8 @@ import CpicDemo from '../views/Cpic.vue'
 import Drag from '../views/Drag.vue'
 import DragView from '../views/DragView.vue'
 import VSlot from '../views/VSlot.vue'
+import DynamicOrder from '../views/DynamicOrder.vue'
+import Transition from '../views/Transition.vue'
 Vue.use(Router)
 
 const router = new Router({
@@ -69,6 +71,12 @@ const router = new Router({
     },{
         path:'/vslot',
         component:VSlot
+    },{
+        path:'/cpicorder',
+        component:DynamicOrder
+    },{
+        path:'/transition',
+        component:Transition
     }]
 })
 
