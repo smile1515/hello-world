@@ -18,7 +18,7 @@
                 <div class="header-user">
                     <div class="user-info">
                         <h3 class="font24 bold">Hi,nier</h3>
-                        <p class="font12 mt15">你已加入太保大家庭<span class="bold">100</span>天</p>
+                        <p class="font12 mt15">你已加入大家庭<span class="bold">100</span>天</p>
                     </div>
                     <div class="user-signin font14">
                         <Badge>签到</Badge>
